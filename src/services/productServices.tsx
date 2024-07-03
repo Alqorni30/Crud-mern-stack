@@ -8,7 +8,7 @@ type Product = {
     price: string;
 }
 
-const API_URL = "http://localhost:1001/products";
+const API_URL = "https://express-api-steel-mu.vercel.app/products";
 
 export const getProducts = async (): Promise<Product[]> => {
   try {
