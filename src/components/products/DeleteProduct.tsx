@@ -40,7 +40,7 @@ const DeleteProduct: React.FC<DeleteProductProps> = ({
       </button>
 
       {showModal && (
-        <div className="fixed bg-black bg-opacity-50 inset-0 flex items-center justify-center z-50">
+        <div className="fixed bg-black bg-opacity-50 inset-0 flex items-center justify-center z-50 px-2">
           <div className="bg-white w-full max-w-md p-4 rounded-lg shadow-lg">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Confirm Delete</h2>

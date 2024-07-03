@@ -48,6 +48,7 @@ const AddProduct: React.FC = () => {
       setPrice("");
       setDescription("");
       setShowModal(false);
+      alert("Product added successfully!");
       window.location.reload();
     } catch (error) {
       console.error("Error adding product:", error);
@@ -68,7 +69,7 @@ const AddProduct: React.FC = () => {
       </button>
       <h1 className="text-2xl font-bold mb-4">Product List</h1>
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="fixed inset-0 flex items-center justify-center z-50 px-2">
           <div className="modal-overlay absolute inset-0 bg-gray-900 opacity-50"></div>
           <div className="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
             <div className="modal-content py-4 text-left px-6">
