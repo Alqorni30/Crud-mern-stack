@@ -4,7 +4,7 @@ import EditProduct from "./EditProduct";
 import { formatToRupiah } from "../../libs/utils";
 
 type Product = {
-  id: number;
+  id: string;
   name: string;
   description: string;
   image: string;
@@ -26,11 +26,13 @@ const ProductList: React.FC<ProductProps> = ({ product }) => {
 
   return (
     <div key={product.id} className="border p-4 rounded-lg shadow-md">
+      <div className="flex justify-center">
       <img
         src={product.image}
         alt={product.name}
-        className="w-full h-40 object-cover mb-2"
+        className="w-[250px] h-[200px] object-cover mb-2"
       />
+      </div>
       <div className="flex flex-col">
         <span className="font-bold text-lg">{product.name}</span>
         <span className="text-gray-600 font-semibold">{formatToRupiah(product.price)}</span>

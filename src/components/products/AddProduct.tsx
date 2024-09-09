@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getProducts, addProduct } from "../../services/productServices";
 
 type Product = {
-  id: number;
+  id: string;
   name: string;
   description: string;
   image: string;
@@ -33,7 +33,7 @@ const AddProduct: React.FC = () => {
   const handleAddProduct = async (event: React.FormEvent) => {
     event.preventDefault();
     const newProduct: Product = {
-      id: 0, // or leave it out if your backend auto-generates IDs
+      id:"",
       name,
       description,
       image,
@@ -60,14 +60,13 @@ const AddProduct: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="flex items-center justify-center">
       <button
         onClick={handleModal}
-        className="flex bg-blue-700 py-2 px-4 items-center gap-1 hover:bg-blue-500 transition-all hover:text-primary text-sm text-white cursor-pointer rounded-md border  border-white mb-4"
+        className="flex bg-blue-700 py-2 px-4 items-center gap-1 hover:bg-blue-500 transition-all hover:text-primary text-sm text-white cursor-pointer rounded-md border border-white"
       >
         + Tambah Produk
       </button>
-      <h1 className="text-2xl font-bold mb-4">Product List</h1>
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center z-50 px-2">
           <div className="modal-overlay absolute inset-0 bg-gray-900 opacity-50"></div>

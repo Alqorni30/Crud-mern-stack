@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getProducts, editProduct } from "../../services/productServices";
 
 type Product = {
-  id: number;
+  id: string;
   name: string;
   description: string;
   image: string;
@@ -14,7 +14,7 @@ const EditProduct = ({
   isOpen,
   onClose,
 }: {
-  productId: number;
+  productId: string;
   isOpen: boolean;
   onClose: () => void;
 }) => {
@@ -105,7 +105,7 @@ const EditProduct = ({
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="mt-1 p-3 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
             <div className="mb-4">

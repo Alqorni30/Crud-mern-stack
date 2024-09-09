@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/productServices";
 import ProductList from "./products/ProductList";
-import AddProduct from "./products/AddProduct";
-import SkeletonCard from "../components/skeleton/SekeltonCard"
+import SkeletonCard from "../components/skeleton/SekeltonCard"; // Perbaiki nama file jika perlu
+import Navbar from "./Layouts/Navbar";
 
 type Product = {
-  id: number;
+  id: string;
   name: string;
   description: string;
   image: string;
@@ -20,8 +20,8 @@ const PageProduct = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const products = await getProducts();
-        setProducts(products);
+        const response = await getProducts();
+        setProducts(response); // Mengatur produk langsung dari API response
         setLoading(false);
       } catch (error) {
         setError(true);
@@ -34,22 +34,30 @@ const PageProduct = () => {
   }, []);
 
   return (
-    <div className="w-full lg:px-20 px-8 lg:py-10 py-5">
-      <h1 className="text-3xl font-bold mb-4">Crud Express</h1>
-      <AddProduct />
-      {error ? (
-        <p className="text-red-500">Error fetching products. Please try again later.</p>
-      ) : loading ? (
-        <SkeletonCard />
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {products.length === 0 && <p className="text-gray-500">No products found.</p>}
-          {products.map((product) => (
-            <ProductList key={product.id} product={product} />
-          ))}
+    <>
+    <Navbar />
+      <div className="w-full lg:py-10 py-5">
+        <div className="container mx-auto max-w-6xl">
+          <h1 className="text-2xl font-bold mb-4">Product List</h1>
+          {error ? (
+            <p className="text-red-500">
+              Error fetching products. Please try again later.
+            </p>
+          ) : loading ? (
+            <SkeletonCard />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {products.length === 0 && (
+                <p className="text-gray-500">No products found.</p>
+              )}
+              {products.map((product) => (
+                <ProductList key={product.id} product={product} />
+              ))}
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 };
 

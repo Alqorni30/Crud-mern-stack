@@ -1,13 +1,12 @@
-import './App.css'
-import PageProduct from './components/Pageproduct'
+import "./App.css";
+import PageProduct from "./components/Pageproduct";
 
 function App() {
-
   return (
     <>
-    <PageProduct />
+      <PageProduct />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

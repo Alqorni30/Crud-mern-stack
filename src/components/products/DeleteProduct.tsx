@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { deleteProduct } from "../../services/productServices";
 
 type Product = {
-  id: number;
+  id: string;
   name: string;
   description: string;
   image: string;
