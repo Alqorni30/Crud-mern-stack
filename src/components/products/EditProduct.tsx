@@ -7,6 +7,7 @@ type Product = {
   description: string;
   image: string;
   price: string;
+  createdAt: Date;
 };
 
 const EditProduct = ({

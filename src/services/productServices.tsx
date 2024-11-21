@@ -6,7 +6,7 @@ type Product = {
   description: string;
   image: string;
   price: string;
-  createdAt: string;
+  createdAt: Date;
 };
 
 const apiUrl = import.meta.env.VITE_API_URL;

@@ -8,7 +8,7 @@ type Product = {
   description: string;
   image: string;
   price: string;
-  createdAt: string;
+  createdAt: Date;
 };
 
 const AddProduct: React.FC = () => {
@@ -45,7 +45,7 @@ const AddProduct: React.FC = () => {
       description,
       image,
       price,
-      createdAt: new Date().toISOString(),
+      createdAt: new Date(),
     };
 
     try {

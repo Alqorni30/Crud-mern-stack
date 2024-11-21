@@ -7,7 +7,7 @@ type Product = {
   description: string;
   image: string;
   price: string;
-  createdAt: string;
+  createdAt: Date;
 };
 
 interface DeleteProductProps {
