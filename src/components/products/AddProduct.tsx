@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getProducts, addProduct } from "../../services/productServices";
+import { useNavigate } from "react-router-dom";
 
 type Product = {
   id: string;
@@ -7,6 +8,7 @@ type Product = {
   description: string;
   image: string;
   price: string;
+  createdAt: string;
 };
 
 const AddProduct: React.FC = () => {
@@ -16,6 +18,11 @@ const AddProduct: React.FC = () => {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleRefresh = () => {
+    navigate(0); 
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -38,6 +45,7 @@ const AddProduct: React.FC = () => {
       description,
       image,
       price,
+      createdAt: new Date().toISOString(),
     };
 
     try {
@@ -49,7 +57,7 @@ const AddProduct: React.FC = () => {
       setDescription("");
       setShowModal(false);
       alert("Product added successfully!");
-      window.location.reload();
+      handleRefresh();
     } catch (error) {
       console.error("Error adding product:", error);
     }

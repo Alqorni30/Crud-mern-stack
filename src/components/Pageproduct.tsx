@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/productServices";
 import ProductList from "./products/ProductList";
-import SkeletonCard from "../components/skeleton/SekeltonCard"; // Perbaiki nama file jika perlu
+import SkeletonCard from "../components/skeleton/SekeltonCard"; 
 import Navbar from "./Layouts/Navbar";
 
 type Product = {
@@ -10,6 +10,7 @@ type Product = {
   description: string;
   image: string;
   price: string;
+  createdAt: string;
 };
 
 const PageProduct = () => {
@@ -21,7 +22,11 @@ const PageProduct = () => {
     const fetchProducts = async () => {
       try {
         const response = await getProducts();
-        setProducts(response); // Mengatur produk langsung dari API response
+        const sortedProducts = response.sort(
+          (a: Product, b: Product) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+  
+        setProducts(sortedProducts);
         setLoading(false);
       } catch (error) {
         setError(true);
@@ -29,9 +34,10 @@ const PageProduct = () => {
         console.error("Error fetching products:", error);
       }
     };
-
+  
     fetchProducts();
   }, []);
+  
 
   return (
     <>
@@ -48,7 +54,7 @@ const PageProduct = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {products.length === 0 && (
-                <p className="text-gray-500">No products found.</p>
+                <p className="text-gray-500">Tidak Ada Products.</p>
               )}
               {products.map((product) => (
                 <ProductList key={product.id} product={product} />

@@ -6,14 +6,15 @@ type Product = {
   description: string;
   image: string;
   price: string;
+  createdAt: string;
 };
 
-const API_URL = 'https://express-api-steel-mu.vercel.app/products';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 // Mengambil daftar produk
 export const getProducts = async (): Promise<Product[]> => {
   try {
-    const response = await axios.get(API_URL);
+    const response = await axios.get(apiUrl);
     // Memeriksa apakah response.data.data adalah array produk
     if (Array.isArray(response.data.data)) {
       return response.data.data;
@@ -29,7 +30,7 @@ export const getProducts = async (): Promise<Product[]> => {
 // Menambahkan produk baru
 export const addProduct = async (product: Product): Promise<Product> => {
   try {
-    const response = await axios.post(API_URL, product, {
+    const response = await axios.post(apiUrl, product, {
       headers: { 'Content-Type': 'application/json' },
     });
     // Memeriksa apakah response.data adalah objek produk yang baru ditambahkan
@@ -47,7 +48,7 @@ export const addProduct = async (product: Product): Promise<Product> => {
 // Menghapus produk
 export const deleteProduct = async (id: string): Promise<void> => {
   try {
-    await axios.delete(`${API_URL}/${id}`);
+    await axios.delete(`${apiUrl}/${id}`);
   } catch (error) {
     console.error('Error deleting product:', error);
     throw error;
@@ -57,7 +58,7 @@ export const deleteProduct = async (id: string): Promise<void> => {
 // Mengedit produk
 export const editProduct = async (id: string, product: Product): Promise<Product> => {
   try {
-    const response = await axios.put(`${API_URL}/${id}`, product, {
+    const response = await axios.put(`${apiUrl}/${id}`, product, {
       headers: { 'Content-Type': 'application/json' },
     });
     // Memeriksa apakah response.data.data adalah objek produk yang baru diubah
